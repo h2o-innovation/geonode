@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: yvy-geonode-new
+
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    app.kubernetes.io/name: geonode-mapstore-config
+    app.kubernetes.io/component: mapstore
+    app.kubernetes.io/part-of: yvy-geonode-new
+
+configMapGenerator:
+  - name: geonode-mapstore-config
+    files:
+      - mapstore/localConfig.json
+      - mapstore/pluginsConfig.json
